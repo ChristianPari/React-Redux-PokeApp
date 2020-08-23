@@ -1,4 +1,7 @@
 # React App w/ Redux, React Router and API integration
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
 This will be a simple website that will allow the user to look through pages of Pokemon names and view their data information which is gather from the [pokeAPI](https://pokeapi.co/) and will also allow them to be able to search for a specified pokemon via a search bar.
 
 Technologies used:
@@ -8,8 +11,6 @@ Technologies used:
 - Axios
 - Lodash
 - NPM
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
