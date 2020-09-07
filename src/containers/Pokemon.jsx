@@ -28,16 +28,42 @@ const Pokemon = (props) => {
                         <img src={pokeData.sprites.front_shiny} alt="" />
                         <img src={pokeData.sprites.back_shiny} alt="" />
                     </div>
+                    <div className={"type"}>
+                        <h1>Types</h1>
+                        {pokeData.types.map(feild => {
+
+                            const name = feild.type.name[0].toUpperCase() + feild.type.name.slice(1, feild.type.name.length);
+
+                            return <p>{name}</p>
+                        })}
+                    </div>
                     <div className={"stats"}>
                         <h1>Stats</h1>
                         {pokeData.stats.map(feild => {
-                            return <p>{feild.stat.name.toUpperCase()} {feild.base_stat}</p>
+                            return (
+                                <p>
+                                    {feild.stat.name.toUpperCase()}
+                                    {feild.base_stat}
+                                </p>
+                            )
                         })}
                     </div>
-                    <div className={"Ablities"}>
+                    <div className={"ablities"}>
                         <h1>Abilities</h1>
                         {pokeData.abilities.map(feild => {
-                            return <p>{feild.ability.name[0].toUpperCase() + feild.ability.name.slice(1, feild.ability.name.length)}</p>
+
+                            const name = feild.ability.name[0].toUpperCase() + feild.ability.name.slice(1, feild.ability.name.length);
+
+                            return <p>{name}</p>
+                        })}
+                    </div>
+                    <div className={"moves"}>
+                        <h1>Moves</h1>
+                        {pokeData.moves.map(feild => {
+
+                            const name = feild.move.name[0].toUpperCase() + feild.move.name.slice(1, feild.move.name.length);
+
+                            return <p>{name}</p>
                         })}
                     </div>
                 </div>

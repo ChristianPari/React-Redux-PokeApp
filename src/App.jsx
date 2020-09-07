@@ -7,8 +7,9 @@ import Pokemon from "./containers/Pokemon"
 function App() {
   return (
     <div className="App">
+      <h1 className={"heading"}>PokeList API w/ React-Redux</h1>
       <nav>
-        <NavLink to={"/"}>Search</NavLink>
+        <NavLink to={"/"}>Home</NavLink>
       </nav>
       {/* NavLink creates a link and the path is specified in the "to" property */}
       <Switch>

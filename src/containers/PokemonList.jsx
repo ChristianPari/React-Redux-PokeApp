@@ -1,11 +1,13 @@
-import React from "react"
+import React, { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import _ from "lodash"
 import { GetPokemonList } from "../actions/pokemonActions"
 import { Link } from "react-router-dom"
+import ReactPaginate from "react-paginate"
 
-const PokemonList = () => {
+const PokemonList = (props) => {
 
+    const [search, setSearch] = useState("");
     const dispatch = useDispatch();
     const pokemonList = useSelector(state => state.PokemonList);
 
@@ -19,6 +21,12 @@ const PokemonList = () => {
     }
 
     const ShowingData = () => {
+
+        // this is what appears quickly while the app is loading
+        if (pokemonList.loading) {
+            return <p>Loading...</p>
+        }
+
         if (!_.isEmpty(pokemonList.data)) {
             return (
                 <div id={"list-wrapper"}>
@@ -37,10 +45,7 @@ const PokemonList = () => {
             )
         }
 
-        if (pokemonList.loading) {
-            return <p>Loading...</p>
-        }
-
+        // this will appear if there is an error retriving the pokemon list data
         if (pokemonList.errMsg !== "") {
             return <p>{pokemonList.List.errMsg}</p>
         }
@@ -48,9 +53,26 @@ const PokemonList = () => {
         return <p>Unable to get data</p>
     }
 
+    // this is what will be compiled and displayed to the virtual DOM within the main App component
     return (
         <div>
+            <div className={"search-wrapper"}>
+                <label htmlFor="search">Search:</label>
+                <input type="text" onChange={e => setSearch(e.target.value)} />
+                {/* props.history.push("path") will allow you to change the path of the Application */}
+                <button onClick={() => props.history.push(`/pokemon/${search}`)}>Search</button>
+            </div>
             {ShowingData()}
+            {/* the below will only run if there is actually data wihtin the pokemonList state */}
+            {!_.isEmpty(pokemonList.data) && (
+                <ReactPaginate
+                    containerClassName={"pagination"}
+                    pageCount={Math.ceil(pokemonList.count / 15)}
+                    pageRangeDisplay={2}
+                    marginPagesDisplayed={1}
+                    onPageChange={(data) => FetchData(data.selected + 1)}
+                />
+            )}
         </div>
     )
 
