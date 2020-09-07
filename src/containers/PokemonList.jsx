@@ -10,8 +10,9 @@ const PokemonList = () => {
     const pokemonList = useSelector(state => state.PokemonList);
 
     React.useEffect(() => {
-        FetchData(1, [])
-    })
+        FetchData(1)
+        // eslint-disable-next-line
+    }, []);
 
     const FetchData = (page = 1) => {
         dispatch(GetPokemonList(page))

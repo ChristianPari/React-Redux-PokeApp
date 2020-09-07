@@ -36,3 +36,18 @@ nav a {
     border-radius: 5px;
     padding: 3px;
 }
+
+.pokemon-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.pokemon-wrapper .item {
+    width: 30%;
+}
+
+.poke {
+    width: 90%;
+    margin: auto;
+}
